@@ -25,6 +25,7 @@ module.exports = function(input) {
 			for(var g in options.globals)
 				globals[g] = options.globals[g];
 		}
+		delete options.globals;
 	}
 	
 	// move flags
@@ -37,6 +38,9 @@ module.exports = function(input) {
 	globals.require = true;
 	globals.module = true;
 	globals.exports = true;
+	globals.global = true;
+	globals.process = true;
+	globals.define = true;
 
 	var source = input.split(/\r\n?|\n/g);
 	var result = jshint(source, options, globals);
@@ -44,6 +48,7 @@ module.exports = function(input) {
 	if(!result) {
 		var hints = [];
 		if(errors) errors.forEach(function(error) {
+			if(!error) return;
 			var message = "  " + error.reason + " @ line " + error.line + " char " + error.character + "\n    " + error.evidence; 
 			hints.push(message);
 		}, this);
