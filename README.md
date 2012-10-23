@@ -25,8 +25,8 @@ jshint: {
 	
 	// jshint to not interrupt the compilation
 	// if you want any file with jshint errors to fail
-	// set failOnError to true
-	failOnError: false
+	// set failOnHint to true
+	failOnHint: false
 }
 ```
 
