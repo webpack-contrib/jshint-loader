@@ -3,6 +3,7 @@
 	Author Tobias Koppers @sokra
 */
 var jshint = require("jshint").JSHINT;
+var loaderUtils = require("loader-utils");
 module.exports = function(input) {
 	this.cacheable && this.cacheable();
 	var options = {};
@@ -13,6 +14,13 @@ module.exports = function(input) {
 			options[name] = this.options.jshint[name];
 		}
 	}
+
+	// copy query into options
+	var query = loaderUtils.parseQuery(this.query);
+	for(var name in query) {
+		options[name] = query[name];
+	}
+
 
 	// copy globals from options
 	var globals = {};
@@ -27,7 +35,7 @@ module.exports = function(input) {
 		}
 		delete options.globals;
 	}
-	
+
 	// move flags
 	var emitErrors = options.emitErrors;
 	delete options.emitErrors;
@@ -49,7 +57,7 @@ module.exports = function(input) {
 		var hints = [];
 		if(errors) errors.forEach(function(error) {
 			if(!error) return;
-			var message = "  " + error.reason + " @ line " + error.line + " char " + error.character + "\n    " + error.evidence; 
+			var message = "  " + error.reason + " @ line " + error.line + " char " + error.character + "\n    " + error.evidence;
 			hints.push(message);
 		}, this);
 		var message = hints.join("\n\n");
