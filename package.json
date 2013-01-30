@@ -1,17 +1,16 @@
 {
 	"name": "jshint-loader",
-	"version": "0.1.4",
+	"version": "0.5.0",
 	"author": "Tobias Koppers @sokra",
 	"description": "jshint loader module for webpack",
 	"dependencies": {
 		"jshint": "0.9.x",
-		"loader-utils": "0.1.x"
+		"loader-utils": "0.2.x"
 	},
 	"licenses": [
 		{
 			"type": "MIT",
 			"url": "http://www.opensource.org/licenses/mit-license.php"
 		}
-	],
-	"license": "MIT"
+	]
 }
