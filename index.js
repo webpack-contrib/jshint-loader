@@ -71,4 +71,3 @@ module.exports = function(input) {
 		throw new Error("Module failed in cause of jshint error.");
 	return input;
 }
-module.exports.seperable = true;
