@@ -7,7 +7,7 @@ Apply the jshint loader as preloader.
 ``` javascript
 preLoaders: [
 	{
-		test: /\.jsx$/, // include .js files
+		test: /\.js$/, // include .js files
 		exclude: /node_modules/, // exclude any and all files in the node_modules folder
 		loader: "jshint"
 	}
