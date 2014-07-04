@@ -1,10 +1,10 @@
 {
 	"name": "jshint-loader",
-	"version": "0.6.0",
+	"version": "0.7.0",
 	"author": "Tobias Koppers @sokra",
 	"description": "jshint loader module for webpack",
 	"dependencies": {
-		"jshint": "2.3.x",
+		"jshint": "2.5.x",
 		"loader-utils": "0.2.x"
 	},
 	"licenses": [
