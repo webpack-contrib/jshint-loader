@@ -42,6 +42,10 @@ module.exports = function(input) {
 	var failOnHint = options.failOnHint;
 	delete options.failOnHint;
 
+	// custom reporter
+	var reporter = options.reporter;
+	delete options.reporter;
+
 	// module system globals
 	globals.require = true;
 	globals.module = true;
@@ -54,18 +58,22 @@ module.exports = function(input) {
 	var result = jshint(source, options, globals);
 	var errors = jshint.errors;
 	if(!result) {
-		var hints = [];
-		if(errors) errors.forEach(function(error) {
-			if(!error) return;
-			var message = "  " + error.reason + " @ line " + error.line + " char " + error.character + "\n    " + error.evidence;
-			hints.push(message);
-		}, this);
-		var message = hints.join("\n\n");
-		var emitter = emitErrors ? this.emitError : this.emitWarning;
-		if(emitter)
-			emitter("jshint results in errors\n" + message);
-		else
-			throw new Error("Your module system doesn't support emitWarning. Update availible? \n" + message);
+		if(reporter) {
+			reporter.call(this, errors);
+		} else {
+			var hints = [];
+			if(errors) errors.forEach(function(error) {
+				if(!error) return;
+				var message = "  " + error.reason + " @ line " + error.line + " char " + error.character + "\n    " + error.evidence;
+				hints.push(message);
+			}, this);
+			var message = hints.join("\n\n");
+			var emitter = emitErrors ? this.emitError : this.emitWarning;
+			if(emitter)
+				emitter("jshint results in errors\n" + message);
+			else
+				throw new Error("Your module system doesn't support emitWarning. Update availible? \n" + message);
+		}
 	}
 	if(failOnHint && !result)
 		throw new Error("Module failed in cause of jshint error.");
