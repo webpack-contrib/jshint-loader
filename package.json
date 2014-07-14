@@ -4,10 +4,12 @@
 	"author": "Tobias Koppers @sokra",
 	"description": "jshint loader module for webpack",
 	"dependencies": {
-		"jshint": "2.5.x",
 		"loader-utils": "0.2.x",
 		"rcloader": "0.1.x",
 		"strip-json-comments": "0.1.x"
+	},
+	"peerDependencies": {
+		"jshint": "^2.5.0"
 	},
 	"licenses": [
 		{
