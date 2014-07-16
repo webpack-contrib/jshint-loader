@@ -20,7 +20,7 @@ function loadRcConfig(callback){
 	var sync = typeof callback !== "function";
 
 	if(sync){
-		var path = rcLoader.for(this.context);
+		var path = rcLoader.for(this.resourcePath);
 		if(typeof path !== "string") {
 			// no .jshintrc found
 			return {};
@@ -31,7 +31,7 @@ function loadRcConfig(callback){
 		}
 	}
 	else {
-		rcLoader.for(this.context, function(err, path) {
+		rcLoader.for(this.resourcePath, function(err, path) {
 			if(typeof path !== "string") {
 				// no .jshintrc found
 				return callback(null, {});

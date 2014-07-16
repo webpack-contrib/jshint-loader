@@ -18,7 +18,7 @@ module.exports = {
 
 	// more options in the optional jshint object
 	jshint: {
-		// any jshint option http://www.jshint.com/docs/
+		// any jshint option http://www.jshint.com/docs/options/
 		// i. e.
 		camelcase: true,
 
