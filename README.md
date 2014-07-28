@@ -29,7 +29,7 @@ module.exports = {
 		// jshint to not interrupt the compilation
 		// if you want any file with jshint errors to fail
 		// set failOnHint to true
-		failOnHint: false
+		failOnHint: false,
 
 		// custom reporter function
 		reporter: function(errors) { }
