@@ -127,7 +127,7 @@ function jsHint(input, options) {
 		throw new Error("Module failed in cause of jshint error.");
 }
 
-module.exports = function(input) {
+module.exports = function(input, map) {
 	this.cacheable && this.cacheable();
 	var callback = this.async();
 
@@ -148,7 +148,7 @@ module.exports = function(input) {
 		catch(e) {
 			return callback(e);
 		}
-		callback(null, input);
+		callback(null, input, map);
 
 	}.bind(this));
 }
