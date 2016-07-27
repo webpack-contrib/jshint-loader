@@ -12,7 +12,12 @@ submit them to [StackOverflow](http://stackoverflow.com/questions/tagged/webpack
 
 
 **Webpack version:**
-1.10.x/2.x
+
+
+**jshint-loader version:**
+
+
+**jshint version:**
 
 
 **Please tell us about your environment:**
