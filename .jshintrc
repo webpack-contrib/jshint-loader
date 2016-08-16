@@ -1,0 +1,7 @@
+{
+    "bitwise": true,
+    "expr": true,
+    "shadow": true,
+    "mocha": true,
+    "node": true
+}
