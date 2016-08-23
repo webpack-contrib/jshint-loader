@@ -1,24 +1,34 @@
 {
-	"name": "jshint-loader",
-	"version": "0.8.3",
-	"author": "Tobias Koppers @sokra",
-	"description": "jshint loader module for webpack",
-	"dependencies": {
-		"loader-utils": "0.2.x",
-		"rcloader": "=0.1.2",
-		"strip-json-comments": "0.1.x"
-	},
-	"peerDependencies": {
-		"jshint": "^2.5.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:webpack/jshint-loader.git"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "http://www.opensource.org/licenses/mit-license.php"
-		}
-	]
+  "name": "jshint-loader",
+  "version": "0.8.3",
+  "author": "Tobias Koppers @sokra",
+  "description": "jshint loader module for webpack",
+  "dependencies": {
+    "loader-utils": "0.2.x",
+    "rcloader": "=0.1.2",
+    "strip-json-comments": "0.1.x"
+  },
+  "peerDependencies": {
+    "jshint": "^2.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:webpack/jshint-loader.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "devDependencies": {
+    "jshint": "^2.9.2",
+    "mocha": "^3.0.2",
+    "should": "^10.0.0",
+    "sinon": "^1.17.5",
+    "webpack": "^1.13.1"
+  },
+  "scripts": {
+    "test": "mocha --harmony --full-trace --check-leaks"
+  }
 }

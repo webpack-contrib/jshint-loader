@@ -2,6 +2,9 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
+
+"use strict";
+
 var jshint = require("jshint").JSHINT;
 var RcLoader = require("rcloader");
 var stripJsonComments = require("strip-json-comments");
@@ -151,4 +154,4 @@ module.exports = function(input, map) {
 		callback(null, input, map);
 
 	}.bind(this));
-}
+};
