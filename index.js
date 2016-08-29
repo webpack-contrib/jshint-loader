@@ -49,7 +49,7 @@ function loadRcConfig(callback){
 						options = JSON.parse(stripJsonComments(file));
 					}
 					catch(e) {
-						err = e;
+						err = new Error("Can't parse config file: " + path);
 					}
 				}
 				callback(err, options);
