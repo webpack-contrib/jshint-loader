@@ -6,7 +6,7 @@ module.exports = {
 		filename: "bundle.js"
 	},
 	module: {
-		loaders: [
+		preLoaders: [
 			{
 				test: /\.js$/,
 				loader: "./index",
