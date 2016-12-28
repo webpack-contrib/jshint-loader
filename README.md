@@ -1,5 +1,10 @@
 # jshint loader for webpack
 
+## npm package
+
+``npm install --save jshint-loader jshint``
+
+
 ## Usage
 
 Apply the jshint loader as pre/postLoader in your webpack configuration:
