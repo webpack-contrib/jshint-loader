@@ -1,6 +1,26 @@
-# jshint loader for webpack
+<div align="center">
+<a href="https://github.com/webpack/webpack">
+    <img width="200" height="200"
+      src="https://webpack.js.org/assets/icon-square-big.svg">
+  </a>
+  </div>
+<h2 align="center">jshint loader for webpack</h2>
 
-## Usage
+<h2 align="center">Install</h2>
+
+### npm
+
+```bash
+npm install --save-dev jshint-loader jshint
+```
+
+### yarn
+
+```bash
+yarn add --save-dev jshint-loader jshint
+```
+
+<h2 align="center">Usage</h2>
 
 Apply the jshint loader as pre/postLoader in your webpack configuration:
 
@@ -37,7 +57,7 @@ module.exports = {
 }
 ```
 
-### Custom reporter
+<h2 align="center">Custom reporter</h2>
 
 By default, `jshint-loader` will provide a default reporter.
 
