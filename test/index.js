@@ -9,22 +9,18 @@ var sinon = require("sinon");
 describe("jshint loader", function() {
 
 	var conf = {};
+	var jshintOptionsRef = {};
 
 	beforeEach(function() {
 		conf = Object.assign({}, config, {
 			entry: "./test/mocks/default.js"
 		});
+		jshintOptionsRef = conf.module.rules[0].options = {};
 	});
 
 	it("should respect & overwrite lint options in webpack config", function (done) {
 
-		conf.plugins = [new webpack.LoaderOptionsPlugin({
-			options: {
-				jshint: {
-					asi: true
-				}
-			}
-		})];
+		jshintOptionsRef.asi = true
 
 		webpack(conf, function(err, stats) {
 			var hasWarnings = stats.hasWarnings();
@@ -34,13 +30,8 @@ describe("jshint loader", function() {
 	});
 
 	it("should emit errors when emitErrors is enabled", function(done) {
-		conf.plugins = [new webpack.LoaderOptionsPlugin({
-			options: {
-				jshint: {
-					emitErrors: true
-				}
-			}
-		})];
+
+		jshintOptionsRef.emitErrors = true
 
 		webpack(conf, function(err, stats) {
 			var hasErrors = stats.hasErrors();
@@ -55,14 +46,8 @@ describe("jshint loader", function() {
 	it("should stop compilation when failOnHint is enabled", function (done) {
 
 		conf.bail = true;
-		conf.plugins = [new webpack.LoaderOptionsPlugin({
-			options: {
-				jshint: {
-					emitErrors: true,
-					failOnHint: true
-				}
-			}
-		})];
+		jshintOptionsRef.emitErrors = true
+		jshintOptionsRef.failOnHint = true;
 
 		webpack(conf, function(err) {
 			should(err).not.be.null();
@@ -78,14 +63,7 @@ describe("jshint loader", function() {
 
 		beforeEach(function() {
 			spy = sinon.spy();
-
-			conf.plugins = [new webpack.LoaderOptionsPlugin({
-				options: {
-					jshint: {
-						reporter: spy
-					}
-				}
-			})];
+			jshintOptionsRef.reporter = spy
 		});
 
 		it("should call the transform function", function(done) {
