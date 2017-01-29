@@ -4,7 +4,7 @@ var should = require("should");
 var loader = require("./index");
 var config = require("./webpack.config");
 var webpack = require("webpack");
-var sinon = require('sinon');
+var sinon = require("sinon");
 
 describe("jshint loader", function() {
 
@@ -18,12 +18,15 @@ describe("jshint loader", function() {
 
 	it("should respect & overwrite lint options in webpack config", function (done) {
 
-		conf.jshint = {
-			asi: true
-		};
+		conf.plugins = [new webpack.LoaderOptionsPlugin({
+			options: {
+				jshint: {
+					asi: true
+				}
+			}
+		})];
 
 		webpack(conf, function(err, stats) {
-
 			var hasWarnings = stats.hasWarnings();
 			hasWarnings.should.not.be.ok();
 			done();
@@ -31,9 +34,13 @@ describe("jshint loader", function() {
 	});
 
 	it("should emit errors when emitErrors is enabled", function(done) {
-		conf.jshint = {
-			emitErrors: true
-		};
+		conf.plugins = [new webpack.LoaderOptionsPlugin({
+			options: {
+				jshint: {
+					emitErrors: true
+				}
+			}
+		})];
 
 		webpack(conf, function(err, stats) {
 			var hasErrors = stats.hasErrors();
@@ -46,14 +53,19 @@ describe("jshint loader", function() {
 	});
 
 	it("should stop compilation when failOnHint is enabled", function (done) {
+
 		conf.bail = true;
-		conf.jshint = {
-			emitErrors: true,
-			failOnHint: true
-		};
+		conf.plugins = [new webpack.LoaderOptionsPlugin({
+			options: {
+				jshint: {
+					emitErrors: true,
+					failOnHint: true
+				}
+			}
+		})];
 
 		webpack(conf, function(err) {
-			err.should.not.be.null();
+			should(err).not.be.null();
 			done();
 		});
 	});
@@ -67,9 +79,13 @@ describe("jshint loader", function() {
 		beforeEach(function() {
 			spy = sinon.spy();
 
-			conf.jshint = {
-				reporter: spy
-			};
+			conf.plugins = [new webpack.LoaderOptionsPlugin({
+				options: {
+					jshint: {
+						reporter: spy
+					}
+				}
+			})];
 		});
 
 		it("should call the transform function", function(done) {
@@ -85,7 +101,6 @@ describe("jshint loader", function() {
 		it("should emit warnings", function(done) {
 
 			webpack(conf, function(err, stats) {
-
 				var hasWarnings = stats.hasWarnings();
 				hasWarnings.should.be.ok();
 				done();
@@ -95,7 +110,6 @@ describe("jshint loader", function() {
 		it("should not emit errors", function(done) {
 
 			webpack(conf, function(err, stats) {
-
 				var hasErrors = stats.hasErrors();
 				hasErrors.should.not.be.ok();
 				done();

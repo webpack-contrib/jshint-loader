@@ -26,7 +26,7 @@
     "mocha": "^3.0.2",
     "should": "^10.0.0",
     "sinon": "^1.17.5",
-    "webpack": "^1.13.1"
+    "webpack": "^2.2.0"
   },
   "scripts": {
     "test": "mocha --harmony --full-trace --check-leaks"
