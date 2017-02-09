@@ -2,3 +2,4 @@ node_modules
 /example/out
 /test/trash
 *.log
+.DS_Store

@@ -4,26 +4,25 @@ var should = require("should");
 var loader = require("./index");
 var config = require("./webpack.config");
 var webpack = require("webpack");
-var sinon = require('sinon');
+var sinon = require("sinon");
 
 describe("jshint loader", function() {
 
 	var conf = {};
+	var jshintOptionsRef = {};
 
 	beforeEach(function() {
 		conf = Object.assign({}, config, {
 			entry: "./test/mocks/default.js"
 		});
+		jshintOptionsRef = conf.module.rules[0].options = {};
 	});
 
 	it("should respect & overwrite lint options in webpack config", function (done) {
 
-		conf.jshint = {
-			asi: true
-		};
+		jshintOptionsRef.asi = true
 
 		webpack(conf, function(err, stats) {
-
 			var hasWarnings = stats.hasWarnings();
 			hasWarnings.should.not.be.ok();
 			done();
@@ -31,9 +30,8 @@ describe("jshint loader", function() {
 	});
 
 	it("should emit errors when emitErrors is enabled", function(done) {
-		conf.jshint = {
-			emitErrors: true
-		};
+
+		jshintOptionsRef.emitErrors = true
 
 		webpack(conf, function(err, stats) {
 			var hasErrors = stats.hasErrors();
@@ -46,14 +44,13 @@ describe("jshint loader", function() {
 	});
 
 	it("should stop compilation when failOnHint is enabled", function (done) {
+
 		conf.bail = true;
-		conf.jshint = {
-			emitErrors: true,
-			failOnHint: true
-		};
+		jshintOptionsRef.emitErrors = true
+		jshintOptionsRef.failOnHint = true;
 
 		webpack(conf, function(err) {
-			err.should.not.be.null();
+			should(err).not.be.null();
 			done();
 		});
 	});
@@ -66,10 +63,7 @@ describe("jshint loader", function() {
 
 		beforeEach(function() {
 			spy = sinon.spy();
-
-			conf.jshint = {
-				reporter: spy
-			};
+			jshintOptionsRef.reporter = spy
 		});
 
 		it("should call the transform function", function(done) {
@@ -85,7 +79,6 @@ describe("jshint loader", function() {
 		it("should emit warnings", function(done) {
 
 			webpack(conf, function(err, stats) {
-
 				var hasWarnings = stats.hasWarnings();
 				hasWarnings.should.be.ok();
 				done();
@@ -95,7 +88,6 @@ describe("jshint loader", function() {
 		it("should not emit errors", function(done) {
 
 			webpack(conf, function(err, stats) {
-
 				var hasErrors = stats.hasErrors();
 				hasErrors.should.not.be.ok();
 				done();

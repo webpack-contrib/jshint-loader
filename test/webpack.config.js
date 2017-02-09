@@ -6,10 +6,11 @@ module.exports = {
 		filename: "bundle.js"
 	},
 	module: {
-		preLoaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				loader: "./index",
+				enforce: "pre",
 				exclude: /node_modules/
 			}
 		]
