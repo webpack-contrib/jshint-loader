@@ -4,7 +4,7 @@
   "author": "Tobias Koppers @sokra",
   "description": "jshint loader module for webpack",
   "dependencies": {
-    "loader-utils": "0.2.x",
+    "loader-utils": "^1.0.2",
     "rcloader": "=0.1.2",
     "strip-json-comments": "0.1.x"
   },

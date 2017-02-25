@@ -67,7 +67,7 @@ function jsHint(input, options) {
 	}
 
 	// copy query into options
-	var query = loaderUtils.parseQuery(this.query);
+	var query = loaderUtils.getOptions(this) || {};
 	for(var name in query) {
 		options[name] = query[name];
 	}
