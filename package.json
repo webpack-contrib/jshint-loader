@@ -4,7 +4,7 @@
   "author": "Tobias Koppers @sokra",
   "description": "jshint loader module for webpack",
   "dependencies": {
-    "loader-utils": "0.2.x",
+    "loader-utils": "^1.0.2",
     "rcloader": "=0.1.2",
     "strip-json-comments": "0.1.x"
   },
@@ -29,6 +29,7 @@
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "test": "mocha --harmony --full-trace --check-leaks"
+    "test": "npm run travis:test",
+    "travis:test": "mocha --harmony --full-trace --check-leaks"
   }
 }
