@@ -29,6 +29,7 @@
     "webpack": "^1.13.1"
   },
   "scripts": {
-    "test": "mocha --harmony --full-trace --check-leaks"
+    "test": "npm run travis:test",
+    "travis:test": "mocha --harmony --full-trace --check-leaks"
   }
 }
