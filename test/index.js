@@ -1,10 +1,10 @@
 "use strict";
 
 var should = require("should");
-var loader = require("./index");
 var config = require("./webpack.config");
 var webpack = require("webpack");
-var sinon = require('sinon');
+var sinon = require("sinon");
+var loadRcConfig = require("../lib/loadRcConfig");
 
 describe("jshint loader", function() {
 
@@ -13,6 +13,21 @@ describe("jshint loader", function() {
 	beforeEach(function() {
 		conf = Object.assign({}, config, {
 			entry: "./test/mocks/default.js"
+		});
+	});
+
+	it("should find and coalesce nested .jshintrc files", function() {
+		var host = {
+			resourcePath: conf.entry,
+			addDependency: function() {}
+		};
+		loadRcConfig.call(host).should.deepEqual({
+			bitwise: true,
+			expr: true,
+			shadow: true,
+			mocha: true,
+			node: true,
+			quotmark: "double"
 		});
 	});
 
@@ -102,4 +117,5 @@ describe("jshint loader", function() {
 			});
 		});
 	});
+
 });
