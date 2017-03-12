@@ -6,6 +6,7 @@
 "use strict";
 
 var jshint = require("jshint").JSHINT;
+var jshintcli = require('jshint/src/cli.js');
 var RcLoader = require("rcloader");
 var stripJsonComments = require("strip-json-comments");
 var loaderUtils = require("loader-utils");
@@ -133,6 +134,10 @@ function jsHint(input, options) {
 module.exports = function(input, map) {
 	this.cacheable && this.cacheable();
 	var callback = this.async();
+
+	if (jshintcli.gather({ args: [this.resourcePath] }).length === 0) {
+		return callback ? callback(null, input, map) : input;
+	}
 
 	if(!callback) {
 		// load .jshintrc synchronously
