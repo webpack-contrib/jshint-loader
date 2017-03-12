@@ -21,16 +21,21 @@ npm i jshint-loader --save
 
 <h2 align="center">Usage</h2>
 
-Apply the jshint loader as pre/postLoader in your webpack configuration:
+Apply the jshint loader in your webpack configuration:
 
 ``` javascript
 module.exports = {
 	module: {
-		preLoaders: [
+		rules: [
 			{
 				test: /\.js$/, // include .js files
+				enforce: "pre", // preload the jshint loader
 				exclude: /node_modules/, // exclude any and all files in the node_modules folder
-				loader: "jshint-loader"
+				use: [
+					{
+						loader: "jshint-loader"
+					}
+				]
 			}
 		]
 	},
