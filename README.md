@@ -10,7 +10,7 @@
       src="https://cdn.rawgit.com/webpack/media/e7485eb2/logo/icon.svg">
   </a>
   <h1>jshint Loader</h1>
-  <p>jshint loader for Webpack.<p>
+  <p>Runs <a href="http://jshint.com/">JSHint</a> on required JavaScript files.<p>
 </div>
 
 <h2 align="center">Install</h2>
