@@ -12,13 +12,13 @@ describe("jshint loader", function() {
 
 	beforeEach(function() {
 		conf = Object.assign({}, config, {
-			entry: "./test/mocks/default.js"
+			entry: ["./test/mocks/default.js", "./test/mocks/ignored.jsx"]
 		});
 	});
 
 	it("should find and coalesce nested .jshintrc files", function() {
 		var host = {
-			resourcePath: conf.entry,
+			resourcePath: conf.entry[0],
 			addDependency: function() {}
 		};
 		loadRcConfig.call(host).should.deepEqual({
@@ -96,6 +96,15 @@ describe("jshint loader", function() {
 	});
 
 	describe("with default settings", function() {
+		it("should include files with non-'js' extensions", function(done) {
+			conf.entry.push("./test/mocks/invalid.jsx")
+
+			webpack(conf, function(err, stats) {
+				var hasWarnings = stats.hasWarnings();
+				hasWarnings.should.be.ok();
+				done();
+			})
+		});
 
 		it("should emit warnings", function(done) {
 

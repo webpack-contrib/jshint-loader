@@ -8,7 +8,7 @@ module.exports = {
 	module: {
 		preLoaders: [
 			{
-				test: /\.js$/,
+				test: /\.jsx?$/,
 				loader: "./index",
 				exclude: /node_modules/
 			}

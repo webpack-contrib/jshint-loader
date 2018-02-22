@@ -6,6 +6,7 @@
 "use strict";
 
 var jshint = require("jshint").JSHINT;
+var jshintcli = require("jshint/src/cli.js");
 var loaderUtils = require("loader-utils");
 var loadRcConfig = require("./lib/loadRcConfig");
 
@@ -84,6 +85,16 @@ function jsHint(input, options) {
 module.exports = function(input, map) {
 	this.cacheable && this.cacheable();
 	var callback = this.async();
+
+	var gatherArgs = {
+		args: [this.resourcePath],
+		cwd: this.context,
+		// hack to match any extension, jshint defaults to .js only
+		extensions: "a)|(a*"
+	};
+	if (jshintcli.gather(gatherArgs).length === 0) {
+		return callback ? callback(null, input, map) : input;
+	}
 
 	if(!callback) {
 		// load .jshintrc synchronously
