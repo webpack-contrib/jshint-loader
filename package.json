@@ -40,8 +40,8 @@
   "dependencies": {
     "@webpack-contrib/schema-utils": "^1.0.0-beta.0",
     "loader-utils": "^1.1.0",
-    "lodash": "4.17.4",
-    "rcloader": "=0.1.2",
+    "lodash": "4.17.5",
+    "rcloader": "^0.2.2",
     "shelljs": "0.7.6",
     "strip-json-comments": "0.1.x"
   },
