@@ -40,10 +40,10 @@
   "dependencies": {
     "@webpack-contrib/schema-utils": "^1.0.0-beta.0",
     "loader-utils": "^1.1.0",
-    "lodash": "4.17.4",
-    "rcloader": "=0.1.2",
-    "shelljs": "0.7.6",
-    "strip-json-comments": "0.1.x"
+    "lodash.merge": "^4.6.1",
+    "rcloader": "=0.2.2",
+    "shelljs": "0.8.2",
+    "strip-json-comments": "2.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^6.1.3",
